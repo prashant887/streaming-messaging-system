@@ -1,0 +1,72 @@
+import org.codehaus.groovy.runtime.GStringImpl
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.9.4'
+    }
+
+    ext {
+        generatedProtosDir = "$buildDir/generated-protos" as GStringImpl
+    }
+}
+
+
+plugins {
+    id 'com.google.protobuf'
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://packages.confluent.io/maven/"
+    }
+}
+
+dependencies {
+
+    implementation 'org.apache.kafka:kafka-streams:3.6.0'
+    implementation 'org.slf4j:slf4j-api:2.0.9'
+    testImplementation 'org.slf4j:slf4j-reload4j:2.0.9'
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    implementation 'com.google.protobuf:protobuf-java:3.25.0'
+    implementation 'io.confluent:kafka-protobuf-serializer:5.5.1'
+
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+apply plugin: 'com.google.protobuf'
+
+repositories {
+    maven {
+        url "https://packages.confluent.io/maven/"
+    }
+}
+
+
+dependencies {
+    implementation "io.confluent:kafka-protobuf-serializer:5.5.0"
+}
+
+protobuf {
+
+
+    protoc {
+        artifact = 'com.google.protobuf:protoc:3.25.0'
+    }
+}
+
+sourceSets.main.java.srcDirs += ext.generatedProtosDir + "/main/java"
+

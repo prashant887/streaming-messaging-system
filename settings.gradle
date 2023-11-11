@@ -1,0 +1,4 @@
+rootProject.name = 'streaming-messaging-system'
+include 'deploying-kafka-cluster'
+include 'handling-streaming-data'
+
