@@ -3,4 +3,5 @@ include 'deploying-kafka-cluster'
 include 'handling-streaming-data'
 include 'handling-streaming-data-pulsar'
 include 'event-log-with-kafka'
+include 'stream-processing-aws-kenisis'
 

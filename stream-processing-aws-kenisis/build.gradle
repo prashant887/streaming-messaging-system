@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'software.amazon.awssdk:kinesis:2.21.22'
+    implementation 'com.amazonaws:aws-java-sdk-kinesis:1.12.588'
+    implementation 'com.amazonaws:amazon-kinesis-client:1.15.0'
+    implementation 'org.twitter4j:twitter4j-stream:4.0.7'
+
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
